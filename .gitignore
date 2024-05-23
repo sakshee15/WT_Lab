@@ -1,0 +1,62 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Eclipse
+.project
+.settings/
+.classpath
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Node.js
+node_modules/
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React
+build/
+.temp/
+.cache/
+
+# Maven
+target/
+
+# Gradle
+build/
+.gradle/
+
+# Spring Boot
+*.log
+.tmp/
+.temp/
+
+# Composer
+vendor/
+
+# PHP
+*.log
+cache/
+
+# General build files
+dist/
+build/
+.temp/
+.cache/

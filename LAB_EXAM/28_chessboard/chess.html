@@ -1,0 +1,131 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chessboard</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .chessboard {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(8, 1fr);
+      width: 80vmin;
+      height: 80vmin;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .square {
+      box-sizing: border-box;
+    }
+
+    .dark {
+      background-color: #769656;
+    }
+
+    .light {
+      background-color: #eeeed2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="chessboard" id="chessboard"></div>
+
+<script>
+  // Create the chessboard
+  const chessboardElement = document.getElementById('chessboard');
+
+  for (let row = 0; row < 8; row++) {
+    for (let col = 0; col < 8; col++) {
+      const squareElement = document.createElement('div');
+      squareElement.classList.add('square');
+
+      // Add dark or light class based on the position
+      if ((row + col) % 2 === 0) {
+        squareElement.classList.add('light');
+      } else {
+        squareElement.classList.add('dark');
+      }
+
+      chessboardElement.appendChild(squareElement);
+    }
+  }
+</script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chessboard</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(243, 237, 229);
+        height: 100vh;
+        margin: 0;
+      }
+
+      .chessboard {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        width: 80vmin;
+        height: 80vmin;
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      h1{
+        margin-bottom: 20px;
+        font-size: 2em;
+      }
+
+      .square {
+        box-sizing: border-box;
+      }
+
+      .light {
+        background-color: white;
+      }
+
+      .dark {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <h1>CHESS BOARD</h1>
+    <div class="chessboard" id="chessboard"></div>
+    <script>
+      const chess = document.getElementById("chessboard");
+      for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+          const squareEle = document.createElement("div");
+          squareEle.classList.add("square");
+          if ((i + j) % 2 === 0) {
+            squareEle.classList.add("light");
+          } else {
+            squareEle.classList.add("dark");
+          }
+          chess.appendChild(squareEle);
+        }
+      }
+    </script>
+  </body>
+</html>

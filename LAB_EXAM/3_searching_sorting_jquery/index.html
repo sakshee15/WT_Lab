@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Management with JavaScript and jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            margin: 0 20px;
+        }
+
+        input, button {
+            margin: 10px 0;
+            display: block;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete, .update {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .update {
+            background-color: #3498db;
+        }
+
+        .delete:hover, .update:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Numbers</h2>
+        <input type="text" id="numberInput" placeholder="Enter a number">
+        <button id="addNumber">Add Number</button>
+        <button id="searchNumber">Search Number</button>
+        <button id="sortNumbers">Sort Numbers</button>
+        <ul id="numberList"></ul>
+    </div>
+
+    <div class="container">
+        <h2>Strings</h2>
+        <input type="text" id="stringInput" placeholder="Enter a string">
+        <button id="addString">Add String</button>
+        <button id="sortStrings">Sort Strings</button>
+        <ul id="stringList"></ul>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Numbers
+            let numbers = [];
+            function displayNumbers(arr) {
+                $('#numberList').empty();
+                arr.forEach(function(num, index) {
+                    $('#numberList').append('<li>' + num + ' <button class="delete" data-index="' + index + '">Delete</button></li>');
+                });
+            }
+            $('#addNumber').click(function() {
+                let numberValue = parseInt($('#numberInput').val());
+                if (!isNaN(numberValue)) {
+                    numbers.push(numberValue);
+                    displayNumbers(numbers);
+                    $('#numberInput').val('');
+                }
+            });
+            $('#searchNumber').click(function() {
+                let searchValue = parseInt($('#numberInput').val());
+                let index = numbers.indexOf(searchValue);
+                if (index !== -1) {
+                    alert('Number found at position ' + index);
+                } else {
+                    alert('Number not found!');
+                }
+            });
+            $('#sortNumbers').click(function() {
+                numbers.sort((a, b) => a - b);
+                displayNumbers(numbers);
+            });
+
+            // Strings
+            let strings = [];
+            function displayStrings(arr) {
+                $('#stringList').empty();
+                arr.forEach(function(str, index) {
+                    $('#stringList').append('<li>' + str + ' <button class="update" data-index="' + index + '">Update</button><button class="delete" data-index="' + index + '">Delete</button></li>');
+                });
+            }
+            $('#addString').click(function() {
+                let stringValue = $('#stringInput').val();
+                if (stringValue) {
+                    strings.push(stringValue);
+                    displayStrings(strings);
+                    $('#stringInput').val('');
+                }
+            });
+            $('#sortStrings').click(function() {
+                strings.sort();
+                displayStrings(strings);
+            });
+            $('#stringList').on('click', '.update', function() {
+                let index = $(this).data('index');
+                let newValue = prompt('Enter new string value:');
+                if (newValue) {
+                    strings[index] = newValue;
+                    displayStrings(strings);
+                }
+            });
+            $('#stringList').on('click', '.delete', function() {
+                let index = $(this).data('index');
+                strings.splice(index, 1);
+                displayStrings(strings);
+            });
+        });
+    </script>
+</body>
+</html>

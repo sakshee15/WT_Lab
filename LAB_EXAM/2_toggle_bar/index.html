@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggleable Tabs</title>
+    <style>
+        .tab {
+            display: none;
+        }
+        .tab.active {
+            display: block;
+        }
+        .nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+        .nav li {
+            float: left;
+        }
+        .nav li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .nav li a.active{
+            background-color: #838783;
+        }
+        .nav li a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li><a class="tab-link active" href="#" data-target="home">Home</a></li>
+        <li><a class="tab-link" href="#" data-target="about">About</a></li>
+        <li><a class="tab-link" href="#" data-target="contact">Contact</a></li>
+    </ul>
+
+    <div class="container mt-4">
+        <div id="home" class="tab active">
+            <h3>Home</h3>
+            <p>Home</p>
+        </div>
+        <div id="about" class="tab">
+            <h3>About</h3>
+            <p>About</p>
+        </div>
+        <div id="contact" class="tab">
+            <h3>Contact</h3>
+            <p>Contact</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabLinks = document.querySelectorAll('.tab-link');
+            
+            tabLinks.forEach(function(tabLink) {
+                tabLink.addEventListener('click', function() {
+                    const target = this.getAttribute('data-target');
+                    tabs.forEach(function(tab) {
+                        if (tab.id === target) {
+                            tab.classList.add('active');
+                        } else {
+                            tab.classList.remove('active');
+                        }
+                    });
+                    tabLinks.forEach(function(link) {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
